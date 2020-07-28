@@ -9,7 +9,10 @@
 #' @param names character
 #'
 #' @return
+#' A tibble with a datetime first column
+#' @importFrom magrittr %>%
 #' @export
+
 get_data <- function(ticker,
                      path = "data.xlsx",
                      flds = "PX_LAST",
