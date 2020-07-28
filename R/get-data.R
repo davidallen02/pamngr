@@ -19,30 +19,30 @@ get_data <- function(ticker,
                      start_date = "2000-01-01",
                      names = NA){
 
-  library(magrittr)
+  # requireNameSpace(magrittr)
 
-  machine <- Sys.info() %>% extract2("nodename")
-
-  if(machine %in% c("BBDA","BBJW")){
-
-    ticker <- ticker %>% stringr::str_to_upper() %>% paste("Index")
-
-    Rblpapi::blpConnect()
-
-    dat <- Rblpapi::bdh(
-      securities = ticker,
-      fields = flds,
-      start.date = start_date %>% as.Date()
-    ) %>%
-      magrittr::set_colnames(c("dates", flds))%>%
-      tibble::as_tibble() %>%
-      dplyr::mutate(
-        dates = dates %>% lubridate::as_datetime()
-      )
-
-    return(dat)
-
-  } else {
+  # machine <- Sys.info() %>% extract2("nodename")
+  #
+  # if(machine %in% c("BBDA","BBJW")){
+  #
+  #   ticker <- ticker %>% stringr::str_to_upper() %>% paste("Index")
+  #
+  #   Rblpapi::blpConnect()
+  #
+  #   dat <- Rblpapi::bdh(
+  #     securities = ticker,
+  #     fields = flds,
+  #     start.date = start_date %>% as.Date()
+  #   ) %>%
+  #     magrittr::set_colnames(c("dates", flds))%>%
+  #     tibble::as_tibble() %>%
+  #     dplyr::mutate(
+  #       dates = dates %>% lubridate::as_datetime()
+  #     )
+  #
+  #   return(dat)
+  #
+  # } else {
     if(is.na(names)){names <- "value"}
     if(names == "match"){names <- ticker}
 
@@ -52,5 +52,5 @@ get_data <- function(ticker,
 
 
     return(dat)
-  }
+  # }
 }
