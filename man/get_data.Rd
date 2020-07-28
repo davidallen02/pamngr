@@ -24,11 +24,8 @@ get_data(
 \item{names}{character}
 }
 \value{
-
+A tibble with a datetime first column
 }
 \description{
 Retrieves data from either a .xlsx or Bloomberg API and returns a tibble
-}
-\examples{
-
 }
