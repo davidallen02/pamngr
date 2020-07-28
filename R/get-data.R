@@ -10,9 +10,6 @@
 #'
 #' @return
 #' @export
-#'
-#' @examples
-#'
 get_data <- function(ticker,
                      path = "data.xlsx",
                      flds = "PX_LAST",
