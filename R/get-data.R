@@ -1,3 +1,18 @@
+#' Get Data
+#'
+#' Retrieves data from either a .xlsx or Bloomberg API and returns a tibble
+#'
+#' @param ticker character
+#' @param path character
+#' @param flds character
+#' @param start_date character
+#' @param names character
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#'
 get_data <- function(ticker,
                      path = "data.xlsx",
                      flds = "PX_LAST",
