@@ -7,10 +7,8 @@ Authors@R:
            role = c("aut", "cre"),
            email = "david@pamgmt.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: R tools used at Private Asset Management, Inc in San Diego, CA including 
-tools for quickly creating charts of economic data and performing equity valuation.
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+Description: R tools used at Private Asset Management, Inc in San Diego, CA including tools for quickly creating charts of economic data and performing equity valuation.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
