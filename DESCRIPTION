@@ -23,4 +23,5 @@ Imports:
     stringr,
     tibble,
     ggplot2,
-    rlang
+    rlang,
+    scales

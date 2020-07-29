@@ -1,3 +1,20 @@
+#' Creates a PAM formatted ggplot object
+#'
+#' @param p a ggplot object
+#' @param x_lab string
+#' @param y_lab string
+#' @param plot_title string
+#' @param plot_subtitle string
+#' @param caption logical
+#' @param axis_titles logical
+#' @param y_format string
+#' @param show_legend logical
+#' @param faceted string
+#'
+#' @return a ggplot object
+#' @export
+#'
+#'
 pam_plot <- function(p,
                      x_lab = NA,
                      y_lab = NA,
@@ -87,16 +104,16 @@ pam_plot <- function(p,
       strip.text = ggplot2::element_text(size = ggplot2::rel(1.5))
     )
 
-  if(!is.na(faceted)){
-    if(faceted == 'row'){
-      p <- p + ggplot2::facet_grid(row = ggplot2::vars(variable))
-    } else {
-      if(faceted  == 'col'){
-        p <- p + ggplot2::facet_grid(col = ggplot2::vars(variable))
-      }
-    }
-
-  }
+  # if(!is.na(faceted)){
+  #   if(faceted == 'row'){
+  #     p <- p + ggplot2::facet_grid(row = ggplot2::vars(variable))
+  #   } else {
+  #     if(faceted  == 'col'){
+  #       p <- p + ggplot2::facet_grid(col = ggplot2::vars(variable))
+  #     }
+  #   }
+  #
+  # }
 
 
   return(p)
