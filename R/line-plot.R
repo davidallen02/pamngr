@@ -1,6 +1,6 @@
 #' Formatted ggplot2 line plot
 #'
-#' @param df
+#' @param df a data.frame with column names consistent with output from reshape2::melt()
 #'
 #' @return ggplot2 object
 #' @export

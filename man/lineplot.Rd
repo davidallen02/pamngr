@@ -7,7 +7,7 @@
 lineplot(df)
 }
 \arguments{
-\item{df}{}
+\item{df}{a data.frame with column names consistent with output from reshape2::melt()}
 }
 \value{
 ggplot2 object
