@@ -3,4 +3,5 @@
 export(barplot)
 export(get_data)
 export(join_sheets)
+export(pam.pal)
 importFrom(magrittr,"%>%")
