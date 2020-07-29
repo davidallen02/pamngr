@@ -1,9 +1,9 @@
-#' Title
+#' Color palette
 #'
-#' @return
+#' @return character vector of complementary colors
 #' @export
 #'
-#' @examples
+
 pam.pal <- function(){
 
   return(c("#850237",

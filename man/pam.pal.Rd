@@ -2,13 +2,13 @@
 % Please edit documentation in R/pam-pal.R
 \name{pam.pal}
 \alias{pam.pal}
-\title{Title}
+\title{Color palette}
 \usage{
 pam.pal()
 }
 \value{
-
+character vector of complementary colors
 }
 \description{
-Title
+Color palette
 }
