@@ -22,4 +22,5 @@ Imports:
     readxl,
     stringr,
     tibble,
-    ggplot2
+    ggplot2,
+    rlang

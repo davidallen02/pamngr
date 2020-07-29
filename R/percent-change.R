@@ -5,15 +5,13 @@
 #'
 #' @return a tibble
 #' @export
+#' @importFrom rlang .data
 #'
-#' @examples
 pchange <- function(dat, k = 1){
-  dat <- dat %>%
-    dplyr::mutate(
-      value = value %>%
-        divide_by(dplyr::lag(value, n = k)) %>%
-        subtract(1) %>%
-        multiply_by(100))
+  dplyr::mutate(dat,
+                value = .data$value %>%
+                  magrittr::divide_by(dplyr::lag(.data$value, n = k)) %>%
+                  magrittr::subtract(1) %>%
+                  magrittr::multiply_by(100))
 
-  return(dat)
 }
