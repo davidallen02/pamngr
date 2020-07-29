@@ -7,7 +7,7 @@
 #' @return a tibble with a datetime first column followed by a column for each element of sheets
 #' @export
 #'
-#' @examples
+
 join_sheets <- function(sheets){
 
   dat <- pamngr::get_data(sheets[1])

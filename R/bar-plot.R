@@ -7,12 +7,12 @@
 #' @return a ggplot2 object
 #' @export
 #'
-#' @examples
-barplot <- function(df){
 
+barplot <- function(df) {
   p <- df %>%
-    ggplot2::ggplot(ggplot2::aes(dates, value, fill = variable)) +
-    ggplot2::geom_bar(stat = 'identity', position = 'dodge') +
+    ggplot2::ggplot(ggplot2::aes("dates", "value", fill = "variable")) +
+    ggplot2::geom_bar(stat = "identity", position = "dodge") +
     ggplot2::scale_fill_manual(values = pam.pal())
+
   return(p)
 }
