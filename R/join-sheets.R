@@ -1,3 +1,11 @@
+#' Title
+#'
+#' @param sheets
+#'
+#' @return
+#' @export
+#'
+#' @examples
 join_sheets <- function(sheets){
 
   dat <- pamngr::get_data(sheets[1])
