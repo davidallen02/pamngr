@@ -50,6 +50,7 @@ get_data <- function(ticker,
       dplyr::select(c("Dates", flds)) %>%
       magrittr::set_colnames(c("dates", flds))
 
+    save(dat, file = paste0("data/", ticker, ".RData"))
 
     return(dat)
   # }
