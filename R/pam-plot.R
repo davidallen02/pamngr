@@ -29,26 +29,17 @@ pam_plot <- function(p,
   # Plot title ------------------------------------------------------------------------
 
   if(is.na(plot_title)){
-    p <- p + ggplot2::theme(plot_title = ggplot2::element_blank())
+    p <- p + ggplot2::theme(plot.title = ggplot2::element_blank())
   } else {
-    p <- p +
-      ggplot2::labs(title = plot_title) +
-      ggplot2::theme(
-        plot_title = ggplot2::element_text(
-          size    = ggplot2::rel(3.25),
-          face    = 'bold'
-        )
-      )
+    p <- p + ggplot2::labs(title = plot_title)
   }
 
   # Plot subtitle ---------------------------------------------------------------------
 
   if(is.na(plot_subtitle)){
-    p <- p + ggplot2::theme(plot_subtitle = ggplot2::element_blank())
+    p <- p + ggplot2::theme(plot.subtitle = ggplot2::element_blank())
   } else {
-    p <- p +
-      ggplot2::labs(subtitle  = plot_subtitle) +
-      ggplot2::theme(plot_subtitle = ggplot2::element_text(size = ggplot2::rel(2)))
+    p <- p + ggplot2::labs(subtitle = plot_subtitle)
   }
 
 
@@ -66,43 +57,24 @@ pam_plot <- function(p,
     p <- p +
       ggplot2::theme(
         legend.position = 'bottom',
-        legend.title    = ggplot2::element_blank(),
-        legend.text     = ggplot2::element_text(size = ggplot2::rel(1.5))
+        legend.title    = ggplot2::element_blank()
       )
-  } else {
-    p <- p + ggplot2::theme(legend.position = 'none')
-  }
+  } else {p <- p + ggplot2::theme(legend.position = 'none')}
 
 
   # Axis titles -----------------------------------------------------------------------
 
   if(isFALSE(axis_titles)){
     p <- p + ggplot2::theme(axis.title = ggplot2::element_blank())
-  } else {
-    p <- p +
-      ggplot2::labs(x = x_lab, y = y_lab) +
-      ggplot2::theme(
-        axis.title = ggplot2::element_text(size = ggplot2::rel(1.5))
-      )
-  }
+  } else {p <- p + ggplot2::labs(x = x_lab, y = y_lab)}
 
 
   # Axis text -------------------------------------------------------------------------
-  if(y_format == "comma"){
-    p <- p + ggplot2::scale_y_continuous(labels = scales::comma)
-  }
+  if(y_format == "comma"){p <- p + ggplot2::scale_y_continuous(labels = scales::comma)}
 
-  p <- p +
-    ggplot2::theme(
-      axis.text = ggplot2::element_text(size = ggplot2::rel(1.5))
-    )
 
   # Facetting -------------------------------------------------------------------------
 
-  p <- p +
-    ggplot2::theme(
-      strip.text = ggplot2::element_text(size = ggplot2::rel(1.5))
-    )
 
   # if(!is.na(faceted)){
   #   if(faceted == 'row'){
