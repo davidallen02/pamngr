@@ -65,7 +65,7 @@ pam_plot <- function(p,
   # Axis titles -----------------------------------------------------------------------
 
   if(isFALSE(axis_titles)){
-    p <- p + ggplot2::theme(axis.title = ggplot2::element_blank())
+    p <- p + ggplot2::labs(x = NULL, y = NULL)
   } else {p <- p + ggplot2::labs(x = x_lab, y = y_lab)}
 
 

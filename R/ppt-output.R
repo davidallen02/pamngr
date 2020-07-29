@@ -16,9 +16,6 @@ ppt_output <- function(p, image_name){
       axis.title = ggplot2::element_text(size = ggplot2::rel(1.5)),
       axis.text = ggplot2::element_text(size = ggplot2::rel(1.5)),
       strip.text = ggplot2::element_text(size = ggplot2::rel(1.5))
-
-
-
     )
 
   ggplot2::ggsave(
