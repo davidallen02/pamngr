@@ -1,8 +1,10 @@
-#' Title
+#' Combine multiple securities
 #'
-#' @param sheets
+#' Join data for multiple securities into one tibble
 #'
-#' @return
+#' @param sheets a character vector of Bloomberg security names
+#'
+#' @return a tibble with a datetime first column followed by a column for each element of sheets
 #' @export
 #'
 #' @examples
