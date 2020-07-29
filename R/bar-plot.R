@@ -10,7 +10,7 @@
 
 barplot <- function(df) {
   p <- df %>%
-    ggplot2::ggplot(ggplot2::aes("dates", "value", fill = "variable")) +
+    ggplot2::ggplot(ggplot2::aes(.data$dates, .data$value, fill = .data$variable)) +
     ggplot2::geom_bar(stat = "identity", position = "dodge") +
     ggplot2::scale_fill_manual(values = pam.pal())
 
