@@ -7,9 +7,9 @@
 #' @export
 #'
 #'
-ppt_output <- function(p, image_name){
+ppt_output <- function(p, image_name, save = TRUE){
 
-  save(p, file = paste0("plots/", image_name))
+  if(save){save(p, file = paste0("plots/", image_name))}
 
   p <- p +
     ggplot2::theme(
