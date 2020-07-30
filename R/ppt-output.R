@@ -23,7 +23,7 @@ ppt_output <- function(p, image_name, save = TRUE){
     )
 
   ggplot2::ggsave(
-    filename = paste0("output/ppt/", image_name),
+    filename = paste0("output/ppt/", image_name, ".png"),
     plot     = p,
     width    = 13.33,
     height   = 6.75,
