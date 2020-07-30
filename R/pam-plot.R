@@ -73,22 +73,5 @@ pam_plot <- function(p,
   if(y_format == "comma"){p <- p + ggplot2::scale_y_continuous(labels = scales::comma)}
 
 
-  # Facetting -------------------------------------------------------------------------
-
-
-  # if(!is.na(faceted)){
-  #   if(faceted == 'row'){
-  #     p <- p + ggplot2::facet_grid(row = ggplot2::vars(variable))
-  #   } else {
-  #     if(faceted  == 'col'){
-  #       p <- p + ggplot2::facet_grid(col = ggplot2::vars(variable))
-  #     }
-  #   }
-  #
-  # }
-
-
   return(p)
-
-
 }
