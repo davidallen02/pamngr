@@ -4,12 +4,14 @@
 \alias{ppt_output}
 \title{Title}
 \usage{
-ppt_output(p, image_name)
+ppt_output(p, image_name, save = TRUE)
 }
 \arguments{
 \item{p}{a ggplot2 object}
 
 \item{image_name}{character}
+
+\item{save}{logical}
 }
 \value{
 Saves a .png

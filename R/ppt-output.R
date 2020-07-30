@@ -2,6 +2,7 @@
 #'
 #' @param p a ggplot2 object
 #' @param image_name character
+#' @param save logical
 #'
 #' @return Saves a .png
 #' @export
