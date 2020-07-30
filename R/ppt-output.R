@@ -8,6 +8,9 @@
 #'
 #'
 ppt_output <- function(p, image_name){
+
+  save(p, file = paste0("plots/", image_name))
+
   p <- p +
     ggplot2::theme(
       plot.title = ggplot2::element_text(size = ggplot2::rel(3.25), face = 'bold'),
