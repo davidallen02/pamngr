@@ -43,19 +43,20 @@ get_data <- function(ticker,
   #   return(dat)
   #
   # } else {
-    if(is.na(names)){names <- "value"}
-    if(names == "match"){names <- ticker}
+  if(is.na(names)){names <- "value"}
+  if(names == "match"){names <- ticker}
 
-    dat <- readxl::read_excel(path = path, sheet = ticker, skip = 4, na = "#N/A N/A") %>%
-      dplyr::select(c("Dates", flds)) %>%
-      magrittr::set_colnames(c("dates", flds))
+  dat <- readxl::read_excel(path = path, sheet = ticker, skip = 4, na = "#N/A N/A") %>%
+    dplyr::select(c("Dates", flds)) %>%
+    magrittr::set_colnames(c("dates", flds))
 
-    ticker %>%
-      stringr::str_to_lower() %>%
-      stringr::str_replace_all(" ", "-") %>%
-      save(dat, file = paste0("data/", ., ".RData"))
+  chart_name <- ticker %>%
+    stringr::str_to_lower() %>%
+    stringr::str_replace_all(" ", "-")
 
-    return(dat)
+  save(dat, file = paste0("data/", chart_name, ".RData"))
+
+  return(dat)
   # }
 
 
