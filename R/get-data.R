@@ -19,36 +19,34 @@ get_data <- function(ticker,
                      start_date = "2000-01-01",
                      names = NA){
 
-  # requireNameSpace(magrittr)
 
-  # machine <- Sys.info() %>% extract2("nodename")
-  #
-  # if(machine %in% c("BBDA","BBJW")){
-  #
-  #   ticker <- ticker %>% stringr::str_to_upper() %>% paste("Index")
-  #
-  #   Rblpapi::blpConnect()
-  #
-  #   dat <- Rblpapi::bdh(
-  #     securities = ticker,
-  #     fields = flds,
-  #     start.date = start_date %>% as.Date()
-  #   ) %>%
-  #     magrittr::set_colnames(c("dates", flds))%>%
-  #     tibble::as_tibble() %>%
-  #     dplyr::mutate(
-  #       dates = dates %>% lubridate::as_datetime()
-  #     )
-  #
-  #   return(dat)
-  #
-  # } else {
+  machine <- Sys.info() %>% extract2("nodename")
+
+  if(machine %in% c("BBDA","BBJW")){
+
+    ticker_full <- ticker %>% stringr::str_to_upper() %>% paste("Index")
+
+    Rblpapi::blpConnect()
+
+    dat <- Rblpapi::bdh(
+      securities = ticker_full,
+      fields = flds,
+      start.date = start_date %>% as.Date()
+    ) %>%
+      magrittr::set_colnames(c("dates", flds))%>%
+      tibble::as_tibble() %>%
+      dplyr::mutate(
+        dates = dates %>% lubridate::as_datetime()
+      )
+
+  } else {
   if(is.na(names)){names <- "value"}
   if(names == "match"){names <- ticker}
 
   dat <- readxl::read_excel(path = path, sheet = ticker, skip = 4, na = "#N/A N/A") %>%
     dplyr::select(c("Dates", flds)) %>%
     magrittr::set_colnames(c("dates", flds))
+  }
 
   chart_name <- ticker %>%
     stringr::str_to_lower() %>%
@@ -57,7 +55,5 @@ get_data <- function(ticker,
   save(dat, file = paste0("data/", chart_name, ".RData"))
 
   return(dat)
-  # }
-
 
 }
