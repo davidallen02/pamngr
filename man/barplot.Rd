@@ -4,10 +4,16 @@
 \alias{barplot}
 \title{Create a formatted bar plot}
 \usage{
-barplot(df)
+barplot(df, x = .data$dates, y = .data$value, fill = .data$variable)
 }
 \arguments{
 \item{df}{a data.frame() likely created using a tibble from either get_data() or join_sheets() that is then passed to reshape2::melt(id.vars = "dates")}
+
+\item{x}{a character indicating the x axis value}
+
+\item{y}{a character indicating the y axis value}
+
+\item{fill}{a character indicating the fill color}
 }
 \value{
 a ggplot2 object
