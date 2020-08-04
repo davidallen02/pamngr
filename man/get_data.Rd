@@ -6,6 +6,7 @@
 \usage{
 get_data(
   ticker,
+  type = "Index",
   path = "data.xlsx",
   flds = "PX_LAST",
   start_date = "2000-01-01",
@@ -14,6 +15,8 @@ get_data(
 }
 \arguments{
 \item{ticker}{character}
+
+\item{type}{character}
 
 \item{path}{character}
 

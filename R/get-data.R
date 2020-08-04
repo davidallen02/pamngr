@@ -3,6 +3,7 @@
 #' Retrieves data from either a .xlsx or Bloomberg API and returns a tibble
 #'
 #' @param ticker character
+#' @param type character
 #' @param path character
 #' @param flds character
 #' @param start_date character
@@ -16,6 +17,7 @@
 #' @export
 
 get_data <- function(ticker,
+                     type = "Index",
                      path = "data.xlsx",
                      flds = "PX_LAST",
                      start_date = "2000-01-01",
@@ -26,7 +28,7 @@ get_data <- function(ticker,
 
   if(machine %in% c("BBDA","BBJW")){
 
-    ticker_full <- ticker %>% stringr::str_to_upper() %>% paste("Index")
+    ticker_full <- ticker %>% stringr::str_to_upper() %>% paste(type)
 
     Rblpapi::blpConnect()
 
