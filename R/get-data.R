@@ -11,6 +11,7 @@
 #' @return
 #' A tibble with a datetime first column
 #' @importFrom magrittr %>%
+#'
 #' @export
 
 get_data <- function(ticker,
@@ -20,7 +21,7 @@ get_data <- function(ticker,
                      names = NA){
 
 
-  machine <- Sys.info() %>% extract2("nodename")
+  machine <- Sys.info() %>% magrittr::extract2("nodename")
 
   if(machine %in% c("BBDA","BBJW")){
 
@@ -35,7 +36,7 @@ get_data <- function(ticker,
     ) %>%
       magrittr::set_colnames(c("dates", flds))%>%
       tibble::as_tibble() %>%
-      dplyr::mutate(dates = dates %>% lubridate::as_datetime())
+      dplyr::mutate(dates = .data$dates %>% lubridate::as_datetime())
 
   } else {
   if(is.na(names)){names <- "value"}
@@ -44,7 +45,7 @@ get_data <- function(ticker,
     ticker %>%
       stringr::str_to_lower() %>%
       stringr::str_replace_all(" ", "-") %>%
-      paste0("data/", ., ".RData") %>%
+      paste0("data/", .data, ".RData") %>%
       load()
 
   # dat <- readxl::read_excel(path = path, sheet = ticker, skip = 4, na = "#N/A N/A") %>%
