@@ -41,7 +41,7 @@ get_data <- function(ticker,
       tibble::as_tibble() %>%
       dplyr::mutate(dates = .data$dates %>% lubridate::as_datetime())
 
-    file_name <- ticker %>%
+    file_name <- ifelse(type == "Index", ticker, flds) %>%
       stringr::str_to_lower() %>%
       stringr::str_replace_all(" ", "-") %>%
       paste0(".RDS")
