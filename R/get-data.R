@@ -41,9 +41,10 @@ get_data <- function(ticker,
 
     file_name <- ticker %>%
       stringr::str_to_lower() %>%
-      stringr::str_replace_all(" ", "-")
+      stringr::str_replace_all(" ", "-") %>%
+      paste0(".RDS")
 
-    saveRDS(dat, file_name)
+    saveRDS(dat, paste0("./data/", file_name))
 
   } else {
     # if(is.na(names)){names <- "value"}
