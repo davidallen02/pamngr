@@ -12,6 +12,7 @@
 #' A tibble with a datetime first column
 #' @importFrom magrittr %>%
 #'
+#'
 #' @export
 
 get_data <- function(ticker,
@@ -38,23 +39,22 @@ get_data <- function(ticker,
       tibble::as_tibble() %>%
       dplyr::mutate(dates = .data$dates %>% lubridate::as_datetime())
 
-  } else {
-  if(is.na(names)){names <- "value"}
-  if(names == "match"){names <- ticker}
-
-    ticker %>%
+    file_name <- ticker %>%
       stringr::str_to_lower() %>%
-      stringr::str_replace_all(" ", "-") %>%
-      paste0("data/", .data, ".RData") %>%
-      load()
+      stringr::str_replace_all(" ", "-")
 
-  # dat <- readxl::read_excel(path = path, sheet = ticker, skip = 4, na = "#N/A N/A") %>%
-  #   dplyr::select(c("Dates", flds)) %>%
-  #   magrittr::set_colnames(c("dates", flds))
+    saveRDS(dat, file_name)
+
+  } else {
+    # if(is.na(names)){names <- "value"}
+    # if(names == "match"){names <- ticker}
+
+    file_name <- ticker %>%
+      stringr::str_to_lower() %>%
+      stringr::str_replace_all(" ", "-")
+
+    dat <- readRDS(file_name)
   }
 
-
-
   return(dat)
-
 }
