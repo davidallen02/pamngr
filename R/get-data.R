@@ -30,29 +30,29 @@ get_data <- function(ticker,
 
     dat <- Rblpapi::bdh(
       securities = ticker_full,
-      fields = flds,
+      fields     = flds,
       start.date = start_date %>% as.Date()
     ) %>%
       magrittr::set_colnames(c("dates", flds))%>%
       tibble::as_tibble() %>%
-      dplyr::mutate(
-        dates = dates %>% lubridate::as_datetime()
-      )
+      dplyr::mutate(dates = dates %>% lubridate::as_datetime())
 
   } else {
   if(is.na(names)){names <- "value"}
   if(names == "match"){names <- ticker}
 
-  dat <- readxl::read_excel(path = path, sheet = ticker, skip = 4, na = "#N/A N/A") %>%
-    dplyr::select(c("Dates", flds)) %>%
-    magrittr::set_colnames(c("dates", flds))
+    ticker %>%
+      stringr::str_to_lower() %>%
+      stringr::str_replace_all(" ", "-") %>%
+      paste0("data/", ., ".RData") %>%
+      load()
+
+  # dat <- readxl::read_excel(path = path, sheet = ticker, skip = 4, na = "#N/A N/A") %>%
+  #   dplyr::select(c("Dates", flds)) %>%
+  #   magrittr::set_colnames(c("dates", flds))
   }
 
-  chart_name <- ticker %>%
-    stringr::str_to_lower() %>%
-    stringr::str_replace_all(" ", "-")
 
-  save(dat, file = paste0("data/", chart_name, ".RData"))
 
   return(dat)
 
