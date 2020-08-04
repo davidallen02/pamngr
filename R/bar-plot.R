@@ -14,9 +14,9 @@
 #' @export
 #'
 
-barplot <- function(df, x = .data$dates, y = .data$value,  fill = .data$variable) {
+barplot <- function(df, x = "dates", y = "value",  fill = NA) {
   p <- df %>%
-    ggplot2::ggplot(ggplot2::aes(x, y , fill = fill)) +
+    ggplot2::ggplot(ggplot2::aes_string(x = x, y = y, fill = fill)) +
     ggplot2::geom_bar(stat = "identity", position = "dodge") +
     ggplot2::scale_fill_manual(values =  pam.pal())
 
