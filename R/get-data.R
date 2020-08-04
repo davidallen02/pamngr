@@ -54,7 +54,7 @@ get_data <- function(ticker,
       stringr::str_to_lower() %>%
       stringr::str_replace_all(" ", "-")
 
-    dat <- readRDS(file_name)
+    dat <- readRDS(paste0("data/", file_name, ".RDS"))
   }
 
   return(dat)
