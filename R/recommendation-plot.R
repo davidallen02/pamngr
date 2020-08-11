@@ -20,7 +20,7 @@ recommendation_plot <- function(ticker) {
 
   stdt <- recommendations %>%
     dplyr::filter(.data$TICKER == ticker) %>%
-    dplyr::slice_min(.data$DATE, 1) %>%
+    utils::head(1) %>%
     dplyr::select(.data$DATE) %>%
     dplyr::pull()
 
