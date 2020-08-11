@@ -14,9 +14,9 @@ recommendation_plot <- function(ticker) {
   get("recommendations")
 
   px_last <- pamngr::get_data(ticker, type = "Equity", flds = "PX_LAST")
-  # best_target_price <- pamngr::get_data(ticker, type = "Equity", flds = "BEST_TARGET_PRICE")
+  best_target_price <- pamngr::get_data(ticker, type = "Equity", flds = "BEST_TARGET_PRICE")
 
-  path_to_data <- paste0("~/onedrive/pamgmt/asset-management/equities/", ticker, "/data")
+  # path_to_data <- paste0("~/onedrive/pamgmt/asset-management/equities/", ticker, "/data")
 
   stdt <- recommendations %>%
     dplyr::filter(.data$TICKER == ticker) %>%
