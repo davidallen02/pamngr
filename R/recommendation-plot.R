@@ -16,7 +16,7 @@ recommendation_plot <- function(ticker) {
   px_last <- pamngr::get_data(ticker, type = "Equity", flds = "PX_LAST")
   # best_target_price <- pamngr::get_data(ticker, type = "Equity", flds = "BEST_TARGET_PRICE")
 
-  path_to_data <- paste0("~/onedrive/pamgmt/asset-management/equities/", ticker, "/data.xlsx")
+  path_to_data <- paste0("~/onedrive/pamgmt/asset-management/equities/", ticker, "/data")
 
   stdt <- recommendations %>%
     dplyr::filter(.data$TICKER == ticker) %>%
@@ -59,19 +59,17 @@ recommendation_plot <- function(ticker) {
                        color = '#850237',
                        size  = 1)
 
-  p <- p + ggplot2::geom_line(data = (
-    readxl::read_excel(path_to_data, sheet = "px_last", skip = 4) %>%
+  p <- p + ggplot2::geom_line(
+    data = (pamngr::get_data(ticker, type = "Equity", flds = "px_last") %>%
       magrittr::set_colnames(c("dates","PX_LAST")) %>%
       reshape2::melt(id.vars = "dates") %>%
       dplyr::mutate(DATE = .data$dates %>% as.Date()) %>%
       dplyr::filter(.data$DATE >= stdt)),
     ggplot2::aes(x = .data$DATE, y = .data$value, color = .data$variable),
     size = 1) +
-    ggplot2::geom_line(data = (
-      readxl::read_excel(path_to_data,
-                         sheet = "best_target_price",
-                         skip = 4,
-                         na = "#N/A N/A") %>%
+
+    ggplot2::geom_line(
+      data = (pamngr::get_data(ticker, type = "Equity", flds = "best_target_price") %>%
         magrittr::set_colnames(c("dates", "BEST_TARGET_PRICE")) %>%
         reshape2::melt(id.vars = "dates") %>%
         dplyr::mutate(DATE = .data$dates %>% as.Date()) %>%
