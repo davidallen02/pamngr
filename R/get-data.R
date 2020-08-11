@@ -63,8 +63,6 @@ get_data <- function(ticker,
                           ticker, "/data/", flds,".RDS")
       dat <- readRDS(file_name)
     }
-
-
   }
 
   return(dat)
