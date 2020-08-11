@@ -49,14 +49,22 @@ get_data <- function(ticker,
     saveRDS(dat, paste0("./data/", file_name))
 
   } else {
-    # if(is.na(names)){names <- "value"}
-    # if(names == "match"){names <- ticker}
+    if(type == "Index"){
 
-    file_name <- ticker %>%
-      stringr::str_to_lower() %>%
-      stringr::str_replace_all(" ", "-")
+      file_name <- ticker %>%
+        stringr::str_to_lower() %>%
+        stringr::str_replace_all(" ", "-")
 
-    dat <- readRDS(paste0("data/", file_name, ".RDS"))
+      dat <- readRDS(paste0("data/", file_name, ".RDS"))
+    }
+
+    if(type == "Equity"){
+      file_name <- paste0("~/onedrive/pamgmt/asset-management/equities/",
+                          ticker, "/data/", flds,".RDS")
+      dat <- readRDS(file_name)
+    }
+
+
   }
 
   return(dat)
