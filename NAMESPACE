@@ -2,6 +2,7 @@
 
 export(all_output)
 export(barplot)
+export(comparative_return)
 export(get_data)
 export(get_recommendations)
 export(join_sheets)
