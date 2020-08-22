@@ -4,7 +4,7 @@
 #'
 #' @return a tibble
 #'
-#'
+#' @export
 get_recommendations <- function(ticker = NA){
 
   machine <- Sys.info()["nodename"]
