@@ -4,12 +4,14 @@
 \alias{pchange}
 \title{Title}
 \usage{
-pchange(dat, k = 1)
+pchange(dat, k = 1, trading_days = FALSE)
 }
 \arguments{
 \item{dat}{a tibble}
 
-\item{k}{number of periods over which to calculate the percentage change}
+\item{k}{number of periods over which to calculate the percentage change or a character coercible to a date (YYYY-MM-DD)}
+
+\item{trading_days}{logical. Should compare date be revised to fall on the most recent prior trading day.}
 }
 \value{
 a tibble
