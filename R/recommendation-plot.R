@@ -11,12 +11,12 @@ recommendation_plot <- function(ticker) {
 
   # library(magrittr)
 
-  get("recommendations")
+  recommendations <- readr::read_csv(
+    file = "~/onedrive/pamgmt/projects/recommendations-and-ranges/data/recommendations.txt",
+    col_types = "cDnnnnnl")
 
   px_last <- pamngr::get_data(ticker, type = "Equity", flds = "px-last")
   best_target_price <- pamngr::get_data(ticker, type = "Equity", flds = "best-target-price")
-
-  # path_to_data <- paste0("~/onedrive/pamgmt/asset-management/equities/", ticker, "/data")
 
   stdt <- recommendations %>%
     dplyr::filter(.data$TICKER == ticker) %>%
@@ -60,7 +60,7 @@ recommendation_plot <- function(ticker) {
                        size  = 1)
 
   p <- p + ggplot2::geom_line(
-    data = (pamngr::get_data(ticker, type = "Equity", flds = "px_last") %>%
+    data = (pamngr::get_data(ticker, type = "Equity", flds = "px-last") %>%
       magrittr::set_colnames(c("dates","PX_LAST")) %>%
       reshape2::melt(id.vars = "dates") %>%
       dplyr::mutate(DATE = .data$dates %>% as.Date()) %>%
@@ -69,7 +69,7 @@ recommendation_plot <- function(ticker) {
     size = 1) +
 
     ggplot2::geom_line(
-      data = (pamngr::get_data(ticker, type = "Equity", flds = "best_target_price") %>%
+      data = (pamngr::get_data(ticker, type = "Equity", flds = "best-target-price") %>%
         magrittr::set_colnames(c("dates", "BEST_TARGET_PRICE")) %>%
         reshape2::melt(id.vars = "dates") %>%
         dplyr::mutate(DATE = .data$dates %>% as.Date()) %>%
