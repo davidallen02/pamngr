@@ -2,8 +2,11 @@
 
 export(all_output)
 export(barplot)
+export(comparative_return)
 export(get_data)
+export(get_recommendations)
 export(join_sheets)
+export(last_recommendation)
 export(lineplot)
 export(pam.pal)
 export(pam_plot)
