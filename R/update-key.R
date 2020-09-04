@@ -19,7 +19,7 @@ update_key <- function(security){
     }
   }
 
-  path <- path %>% paste0(security, "/data")
+  path <- path %>% paste0("/", security, "/data")
 
   Rblpapi::blpConnect()
 

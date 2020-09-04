@@ -18,8 +18,7 @@ update_data <- function(security){
     }
   }
 
-  path <- path %>% paste0(security, "/data")
-
+  path <- path %>% paste0("/", security, "/data")
   securities <- dir(path) %>% stringr::str_remove_all(".RDS")
   securities <- securities[securities != "key"]
 
