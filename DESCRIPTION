@@ -28,6 +28,7 @@ Imports:
     scales,
     reshape2,
     tidyr,
-    readr
+    readr,
+    purrr
 Depends: 
     R (>= 2.10)
