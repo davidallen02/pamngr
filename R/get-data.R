@@ -28,7 +28,9 @@ get_data <- function(ticker,
 
   if(machine %in% c("BBDA","BBJW")){
 
-    ticker_full <- ticker %>% stringr::str_to_upper() %>% paste(type)
+    ticker_full <- ticker %>%
+      stringr::str_replace_all("-", " ") %>%
+      stringr::str_to_upper() %>% paste(type)
 
     Rblpapi::blpConnect()
 
