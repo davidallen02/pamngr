@@ -14,7 +14,7 @@
 #' @export
 #'
 
-barplot <- function(df, x = "dates", y = "value",  fill = NA) {
+barplot <- function(df, x = "dates", y = "value",  fill = "variable") {
   p <- df %>%
     ggplot2::ggplot(ggplot2::aes_string(x = x, y = y, fill = fill)) +
     ggplot2::geom_bar(stat = "identity", position = "dodge") +

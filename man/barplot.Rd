@@ -4,7 +4,7 @@
 \alias{barplot}
 \title{Create a formatted bar plot}
 \usage{
-barplot(df, x = "dates", y = "value", fill = NA)
+barplot(df, x = "dates", y = "value", fill = "variable")
 }
 \arguments{
 \item{df}{a data.frame() likely created using a tibble from either get_data() or join_sheets() that is then passed to reshape2::melt(id.vars = "dates")}
