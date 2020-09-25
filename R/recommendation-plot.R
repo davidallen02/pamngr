@@ -62,12 +62,12 @@ recommendation_plot <- function(ticker) {
     dplyr::mutate(dates = .data$dates %>% as.Date())
 
   # Prepare earnings announcement dates data for plotting
-  earnings <- pamngr::get_data(ticker, type = "Equity", flds = "announcement_dt") %>%
-    dplyr::mutate(dates = ANNOUNCEMENT_DT) %>%
-    dplyr::select(dates) %>%
-    dplyr::filter(dates >= stdt) %>%
+  earnings <- pamngr::get_data(ticker, type = "Equity", flds = "announcement-dt") %>%
+    dplyr::mutate(dates = .data$announcement_dt) %>%
+    dplyr::select(.data$dates) %>%
+    dplyr::filter(.data$dates >= stdt) %>%
     dplyr::left_join(px_last, by = "dates") %>%
-    dplyr::mutate(dates = dates %>% as.Date())
+    dplyr::mutate(dates = .data$dates %>% as.Date())
 
   # Plot recommendation range history
   p <- ggplot2::ggplot() +
