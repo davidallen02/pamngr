@@ -2,7 +2,7 @@
 % Please edit documentation in R/recommendation-plot.R
 \name{recommendation_plot}
 \alias{recommendation_plot}
-\title{Title}
+\title{Price charts with recommendation history}
 \usage{
 recommendation_plot(ticker)
 }
@@ -13,5 +13,5 @@ recommendation_plot(ticker)
 a ggplot2 object
 }
 \description{
-Title
+Price charts with recommendation history
 }
