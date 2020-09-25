@@ -9,15 +9,17 @@
 #'
 recommendation_plot <- function(ticker) {
 
+  # Read in complete recommendation for security
   recommendations <- readr::read_csv(
     file = "~/onedrive/pamgmt/projects/recommendations-and-ranges/data/recommendations.txt",
-    col_types = "cDnnnnnl")
+    col_types = "cDnnnnnl") %>%
+    dplyr::filter(.data$TICKER == ticker)
+
 
   px_last <- pamngr::get_data(ticker, type = "Equity", flds = "px-last")
   best_target_price <- pamngr::get_data(ticker, type = "Equity", flds = "best-target-price")
 
   stdt <- recommendations %>%
-    dplyr::filter(.data$TICKER == ticker) %>%
     utils::head(1) %>%
     dplyr::select(.data$DATE) %>%
     dplyr::pull()
@@ -25,7 +27,6 @@ recommendation_plot <- function(ticker) {
   p <- ggplot2::ggplot() +
 
     ggplot2::geom_segment(data = (recommendations %>%
-                                    dplyr::filter(.data$TICKER == ticker) %>%
                                     dplyr::select(-c(.data$TICKER,
                                                      .data$PRICE_TARGET)) %>%
                                     dplyr::arrange(.data$DATE) %>%
@@ -35,7 +36,9 @@ recommendation_plot <- function(ticker) {
                                     dplyr::select(-.data$DATE) %>%
                                     reshape2::melt(id.vars = c('start', 'end', 'SOURCE')) %>%
                                     dplyr::filter(!is.na(.data$value)) %>%
-                                    dplyr::mutate(variable = paste(.data$SOURCE, .data$variable, sep='_'))),
+                                    dplyr::mutate(variable = paste(.data$SOURCE,
+                                                                   .data$variable,
+                                                                   sep='_'))),
                           ggplot2::aes(x     = .data$start,
                                        xend  = .data$end,
                                        y     = .data$value,
@@ -45,11 +48,9 @@ recommendation_plot <- function(ticker) {
                           alpha = 1/3) +
 
     ggplot2::geom_step(data = (recommendations %>%
-                                 dplyr::filter(.data$TICKER == ticker) %>%
                                  dplyr::select(.data$DATE, .data$PRICE_TARGET) %>%
                                  dplyr::bind_rows(data.frame('DATE' = Sys.Date(),
                                                              'PRICE_TARGET' = recommendations %>%
-                                                               dplyr::filter(.data$TICKER == ticker) %>%
                                                                dplyr::select(.data$PRICE_TARGET) %>%
                                                                utils::tail(1))) %>%
                                  dplyr::arrange(dplyr::desc(.data$DATE))),
@@ -59,19 +60,19 @@ recommendation_plot <- function(ticker) {
 
   p <- p + ggplot2::geom_line(
     data = (pamngr::get_data(ticker, type = "Equity", flds = "px-last") %>%
-      magrittr::set_colnames(c("dates","PX_LAST")) %>%
-      reshape2::melt(id.vars = "dates") %>%
-      dplyr::mutate(DATE = .data$dates %>% as.Date()) %>%
-      dplyr::filter(.data$DATE >= stdt)),
+              magrittr::set_colnames(c("dates","PX_LAST")) %>%
+              reshape2::melt(id.vars = "dates") %>%
+              dplyr::mutate(DATE = .data$dates %>% as.Date()) %>%
+              dplyr::filter(.data$DATE >= stdt)),
     ggplot2::aes(x = .data$DATE, y = .data$value, color = .data$variable),
     size = 1) +
 
     ggplot2::geom_line(
       data = (pamngr::get_data(ticker, type = "Equity", flds = "best-target-price") %>%
-        magrittr::set_colnames(c("dates", "BEST_TARGET_PRICE")) %>%
-        reshape2::melt(id.vars = "dates") %>%
-        dplyr::mutate(DATE = .data$dates %>% as.Date()) %>%
-        dplyr::filter(.data$DATE >= stdt)),
+                magrittr::set_colnames(c("dates", "BEST_TARGET_PRICE")) %>%
+                reshape2::melt(id.vars = "dates") %>%
+                dplyr::mutate(DATE = .data$dates %>% as.Date()) %>%
+                dplyr::filter(.data$DATE >= stdt)),
       ggplot2::aes(x = .data$DATE, y = .data$value, color = .data$variable),
       size = 1)
 
