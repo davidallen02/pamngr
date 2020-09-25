@@ -53,6 +53,14 @@ recommendation_plot <- function(ticker) {
     tidyr::drop_na(value) %>%
     dplyr::mutate(dates = dates %>% as.Date())
 
+  # Prepare earnings announcement dates data for plotting
+  earnings <- pamngr::get_data(ticker, type = "Equity", flds = "announcement_dt") %>%
+    dplyr::mutate(dates = ANNOUNCEMENT_DT) %>%
+    dplyr::select(dates) %>%
+    dplyr::filter(dates >= stdt) %>%
+    dplyr::left_join(px_last, by = "dates") %>%
+    dplyr::mutate(dates = dates %>% as.Date())
+
   # Plot recommendation range history
   p <- ggplot2::ggplot() +
     ggplot2::geom_segment(data = ranges,
@@ -75,6 +83,22 @@ recommendation_plot <- function(ticker) {
     data = prices,
     ggplot2::aes(x = .data$dates, y = .data$value, color = .data$variable),
     size = 1)
+
+  # Add earnings dates to plot
+  p <- p +
+    ggplot2::geom_point(
+      data = earnings,
+      ggplot2::aes(x = .data$dates, y= .data$px_last),
+      shape = 23,
+      size = 4,
+      fill = "red") +
+    ggplot2::geom_text(
+      data = earnings,
+      ggplot2::aes(x = .data$dates, y= .data$px_last),
+      label = "E",
+      color = "white",
+      size = 3)
+
 
   # Define color palette
   p <- p +
