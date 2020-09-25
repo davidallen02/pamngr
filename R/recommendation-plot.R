@@ -48,10 +48,18 @@ recommendation_plot <- function(ticker) {
   # Join price and  consensus price target data
   prices <- px_last %>%
     dplyr::left_join(best_target_price, by = "dates") %>%
-    dplyr::filter(dates >= stdt) %>%
-    tidyr::pivot_longer(cols = -dates, names_to = "variable") %>%
-    tidyr::drop_na(value) %>%
-    dplyr::mutate(dates = dates %>% as.Date())
+    dplyr::filter(.data$dates >= stdt) %>%
+    tidyr::pivot_longer(cols = -.data$dates, names_to = "variable") %>%
+    tidyr::drop_na(.data$value) %>%
+    dplyr::mutate(dates = .data$dates %>% as.Date())
+
+  # Prepare earnings announcement dates data for plotting
+  earnings <- pamngr::get_data(ticker, type = "Equity", flds = "announcement-dt") %>%
+    dplyr::mutate(dates = .data$announcement_dt %>% as.character() %>% as.Date(format = "%Y%m%d")) %>%
+    dplyr::select(.data$dates) %>%
+    dplyr::filter(.data$dates >= stdt) %>%
+    dplyr::left_join(px_last, by = "dates") %>%
+    dplyr::mutate(dates = .data$dates %>% as.Date())
 
   # Plot recommendation range history
   p <- ggplot2::ggplot() +
@@ -75,6 +83,22 @@ recommendation_plot <- function(ticker) {
     data = prices,
     ggplot2::aes(x = .data$dates, y = .data$value, color = .data$variable),
     size = 1)
+
+  # Add earnings dates to plot
+  p <- p +
+    ggplot2::geom_point(
+      data = earnings,
+      ggplot2::aes(x = .data$dates, y= .data$px_last),
+      shape = 23,
+      size = 4,
+      fill = "red") +
+    ggplot2::geom_text(
+      data = earnings,
+      ggplot2::aes(x = .data$dates, y= .data$px_last),
+      label = "E",
+      color = "white",
+      size = 3)
+
 
   # Define color palette
   p <- p +
