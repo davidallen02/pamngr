@@ -1,4 +1,4 @@
-#' Title
+#' Price charts with recommendation history
 #'
 #' @param ticker a string
 #'
@@ -8,8 +8,6 @@
 #'
 #'
 recommendation_plot <- function(ticker) {
-
-  # library(magrittr)
 
   recommendations <- readr::read_csv(
     file = "~/onedrive/pamgmt/projects/recommendations-and-ranges/data/recommendations.txt",
