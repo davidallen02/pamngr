@@ -13,5 +13,7 @@ all_output <- function(p, image_name, save = TRUE){
   pamngr::ppt_output(p, image_name, save)
   pamngr::tam_output(p, image_name, save = FALSE)
 
+  return(p)
+
 
 }
