@@ -24,4 +24,6 @@ run_it <- function(directory, script, type = "economics"){
   source(script_path)
 
   setwd(current_wkdir)  # reset working directory
+
+  rm(list = ls())
 }
