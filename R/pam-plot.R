@@ -51,6 +51,11 @@ pam_plot <- function(p,
     )
   }
 
+  if(!caption){
+    p <- p + ggplot2::theme(plot.caption = element_blank())
+  }
+
+
   # Legend ----------------------------------------------------------------------------
 
   if(show_legend){
