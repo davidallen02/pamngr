@@ -52,7 +52,7 @@ pam_plot <- function(p,
   }
 
   if(!caption){
-    p <- p + ggplot2::theme(plot.caption = element_blank())
+    p <- p + ggplot2::theme(plot.caption = ggplot2::element_blank())
   }
 
 
