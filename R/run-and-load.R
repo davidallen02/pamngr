@@ -20,10 +20,9 @@ run_and_load <- function(directory, script, plot_name = NA){
                  no   = "/users/davidallen/onedrive/pamgmt/economics/data/")
 
   plot_name <- ifelse(test = is.na(plot_name), yes = script, no = plot_name)
-
   path <- path %>% paste0(directory, "/output/tam/", plot_name, ".RData")
+
   load(path)
 
-  setwd(current_wkdir)
-
+  return(p)
 }
