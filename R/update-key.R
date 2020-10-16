@@ -23,7 +23,10 @@ update_key <- function(security){
 
   Rblpapi::blpConnect()
 
-  securities <- dir(path) %>% stringr::str_remove_all(".RDS")
+  securities <- dir(path) %>%
+    stringr::str_remove_all(".RDS") %>%
+    stringr::str_replace_all("-", " ")
+
   securities <- securities[securities != "key"]
 
   securities %>%
