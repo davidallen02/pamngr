@@ -1,6 +1,7 @@
 #' Update data/key.RDS
 #'
 #' @param security Either a ticker or economic report name
+
 update_key <- function(security){
 
   # search for security
@@ -35,7 +36,10 @@ update_key <- function(security){
     Rblpapi::bdp(fields = c("LONG_COMP_NAME", "INDX_SOURCE")) %>%
     tibble::rownames_to_column(var = "security") %>%
     dplyr::mutate(
-      security = security %>% stringr::str_to_lower() %>% stringr::word()) %>%
+      security = security %>%
+        stringr::str_to_lower() %>%
+        stringr::str_replace(" ", "-") %>%
+        stringr::word()) %>%
     saveRDS("./data/key.RDS")
 
 }
