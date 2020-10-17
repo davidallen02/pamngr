@@ -39,7 +39,9 @@ update_key <- function(security){
       security = security %>%
         stringr::str_to_lower() %>%
         stringr::str_replace(" ", "-") %>%
-        stringr::word()) %>%
+        stringr::word() %>%
+        stringr::str_remove_all("-index")) %>%
+
     saveRDS("./data/key.RDS")
 
 }
