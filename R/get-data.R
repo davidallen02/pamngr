@@ -57,7 +57,7 @@ get_data <- function(ticker,
         stringr::str_to_lower() %>%
         stringr::str_replace_all(" ", "-")
 
-      dat <- readRDS(paste0("data/", file_name, ".RDS"))
+      dat <- readRDS(paste0("/Users/davidallen/OneDrive/pamgmt/economics/data/eco-data/data/", file_name, ".RDS"))
     }
 
     if(type == "Equity"){
