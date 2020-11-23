@@ -10,14 +10,15 @@
 #'
 #' @param fill a character indicating the fill color
 #'
+#' @param ... dots, dots, dots
 #' @return a ggplot2 object
 #' @export
 #'
 
-barplot <- function(df, x = "dates", y = "value",  fill = "variable") {
+barplot <- function(df, x = "dates", y = "value",  fill = "variable", ...) {
   p <- df %>%
     ggplot2::ggplot(ggplot2::aes_string(x = x, y = y, fill = fill)) +
-    ggplot2::geom_bar(stat = "identity", position = "dodge") +
+    ggplot2::geom_bar(stat = "identity") +
     ggplot2::scale_fill_manual(values =  pam.pal())
 
   return(p)
