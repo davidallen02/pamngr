@@ -61,8 +61,9 @@ get_data <- function(ticker,
     }
 
     if(type == "Equity"){
-      file_name <- paste0("~/onedrive/pamgmt/asset-management/equities/",
-                          ticker, "/data/", flds,".RDS")
+      flds <- flds %>% stringr::str_to_lower() %>% stringr::str_replace_all("_", "-")
+      file_name <- paste0("~/onedrive/pamgmt/asset-management/equities/eq-data/output/",
+                          ticker, "-", flds,".RDS")
       dat <- readRDS(file_name)
     }
   }
