@@ -55,7 +55,7 @@ recommendation_plot <- function(ticker) {
 
   # Prepare earnings announcement dates data for plotting
   earnings <- pamngr::get_data(ticker, type = "Equity", flds = "announcement-dt") %>%
-    dplyr::mutate(dates = .data$announcement_dt %>% as.character() %>% as.Date(format = "%Y%m%d")) %>%
+    dplyr::mutate(dates = .data$announcement_dt %>% as.character() %>% as.Date(format = "%Y-%m-%d")) %>%
     dplyr::select(.data$dates) %>%
     dplyr::filter(.data$dates >= stdt) %>%
     dplyr::left_join(px_last, by = "dates") %>%
