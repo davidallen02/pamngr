@@ -22,6 +22,6 @@ update_data <- function(security){
   securities <- dir(path) %>% stringr::str_remove_all(".RDS")
   securities <- securities[securities != "key"]
 
-  securities %>% purrr::map(pamngr::get_data)
+  suppress_output <- securities %>% purrr::map(pamngr::get_data)
 
 }
