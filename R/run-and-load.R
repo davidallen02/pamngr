@@ -24,5 +24,5 @@ run_and_load <- function(directory, script, plot_name = NA){
 
   load(path)
 
-  # return(p)
+  return(p)
 }
