@@ -9,7 +9,7 @@ buy_list_add <- function(addition, type = "equity"){
 
   buy_list_set <- ifelse(type == "equity", "equities.csv", "etfs.csv")
   buy_list_set <- paste0(
-    "/users/davidallen/dropbox/pam/projects/holdings-analysis/buy-list-",
+    "/users/davidallen/dropbox/pam/projects/buy-list/buy-list-",
     buy_list_set)
 
   dat <- readr::read_csv(buy_list_set, col_types = "c") %>%
