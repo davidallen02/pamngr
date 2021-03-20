@@ -5,7 +5,7 @@
 #' @import reshape2
 #' @return a ggplot2 object
 #'
-#'
+#' @export
 #'
 recommendation_plot <- function(ticker) {
 
