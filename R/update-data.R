@@ -5,15 +5,15 @@
 update_data <- function(security){
 
   # search for security
-  equities <- dir("R:/David/asset-management/equities")
-  economics <- dir("R:/David/economics/data")
+  equities <- dir("C:/Users/David/Dropbox/asset-management/equities")
+  economics <- dir("C:/Users/David/Dropbox/economics")
 
   if(security %in% equities){
-    path <- "R:/David/asset-management/equities/"
+    # path <- "R:/David/asset-management/equities/"
     path <- "C:/Users/David/Dropbox/pam/asset-management/equities"
   } else {
     if(security %in% economics){
-      path <- "R:/David/economics/data"
+      # path <- "R:/David/economics/data"
       path <- "C:/Users/David/Dropbox/pam/economics"
     } else{
       print(paste(security, "not in either equities or economics folders"))
