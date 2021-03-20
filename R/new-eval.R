@@ -27,17 +27,17 @@ new_eval <- function(ticker, date = Sys.Date()){
   rec_plot <- paste0("![](", direct_path, "images/", date_file, "-", ticker, "-recommendation-plot.png)")
   double_space <- "  "
 
-  pamngr::recommendation_plot(ticker) %>%
-    ggplot2::ggsave(filename = paste0(direct_path,
-                                      "images/",
-                                      date_file,
-                                      "-",
-                                      ticker,
-                                      "-recommendation-plot.png"),
-                    plot = .data,
-                    width = 6.5,
-                    height = 2.5,
-                    units = "in")
+  p <- pamngr::recommendation_plot(ticker)
+  ggplot2::ggsave(filename = paste0(direct_path,
+                                    "images/",
+                                    date_file,
+                                    "-",
+                                    ticker,
+                                    "-recommendation-plot.png"),
+                  plot = p,
+                  width = 6.5,
+                  height = 2.5,
+                  units = "in")
 
   eval_name <- paste(date_file, ticker, "eval.md", sep = "-")
   eval_path <- paste0(direct_path, "evals/", eval_name)
