@@ -24,12 +24,12 @@ new_eval <- function(ticker, date = Sys.Date()){
 
   recommendation <- "Buy \\$XX - \\$XX, Eval \\$XX & \\$XX  "
   price_target <- "Price Target: \\$XX  "
-  rec_plot <- paste0("![](", direct_path, "images/", date_file, "-", ticker, "-recommendation-plot.png)")
+  rec_plot <- paste0("![](", "../images/", date_file, "-", ticker, "-recommendation-plot.png)")
   double_space <- "  "
 
   p <- pamngr::recommendation_plot(ticker)
-  ggplot2::ggsave(filename = paste0(direct_path,
-                                    "images/",
+  ggplot2::ggsave(filename = paste0(ticker,
+                                    "/images/",
                                     date_file,
                                     "-",
                                     ticker,
