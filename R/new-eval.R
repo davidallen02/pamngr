@@ -14,7 +14,7 @@ new_eval <- function(ticker, date = Sys.Date()){
     paste0(ticker, "/")
   date_eval <- date %>% format("%B %d, %Y") %>% paste0("  ")
 
-  company_name <- pamngr::get_data("hd", type = "Equity", flds = "long-comp-name") %>%
+  company_name <- pamngr::get_data(ticker, type = "Equity", flds = "long-comp-name") %>%
     dplyr::pull()
   if(stringr::str_detect(company_name, "/The")){
     company_name <- company_name %>% stringr::str_remove("/The")
