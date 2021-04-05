@@ -42,6 +42,6 @@ update_key <- function(security){
         stringr::word() %>%
         stringr::str_remove_all("-index")) %>%
 
-    saveRDS("./data/key.RDS")
+    saveRDS(paste0(path, "/key.RDS"))
 
 }
