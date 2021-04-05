@@ -13,7 +13,7 @@ update_key <- function(security){
     type <- "Equity"
   } else {
     if(security %in% economics){
-      path <- "R:/David/economics/data"
+      path <- "C:/Users/David/Dropbox/pam/economics"
       type <- "Index"
     } else{
       print(paste(security, "not in either equities or economics folders"))
