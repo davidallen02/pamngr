@@ -2,7 +2,7 @@ buy_list_remove <- function(removing, type = "equity"){
 
   buy_list_set <- ifelse(type == "equity", "equities.csv", "etfs.csv")
   buy_list_set <- paste0(
-    "/users/davidallen/dropbox/pam/projects/hbuy-list/buy-list-",
+    "/users/davidallen/dropbox/pam/projects/buy-list/buy-list-",
     buy_list_set)
 
   removing <- removing %>% stringr::str_to_lower()
