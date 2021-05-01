@@ -29,6 +29,8 @@ Imports:
     reshape2,
     tidyr,
     readr,
-    purrr
+    purrr,
+    RcppRoll,
+    gridExtra
 Depends: 
     R (>= 2.10)
