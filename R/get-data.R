@@ -64,7 +64,13 @@ get_data <- function(ticker,
   } else {
     if(type == "Index"){
 
+      field_name <- ifelse(flds == "PX_LAST",
+                           "",
+                           paste0("-(", flds, ")")) %>%
+        stringr::str_replace_all("_", "-")
+
       file_name <- ticker %>%
+        paste0(field_name) %>%
         stringr::str_to_lower() %>%
         stringr::str_replace_all(" ", "-")
 
