@@ -30,20 +30,31 @@ get_data <- function(ticker,
 
     ticker_full <- ticker %>%
       stringr::str_replace_all("-", " ") %>%
-      stringr::str_to_upper() %>% paste(type)
+      stringr::str_to_upper() %>%
+      paste(type)
+
+    field_full <- flds %>%
+      stringr::str_replace_all("-", "_") %>%
+      stringr::str_to_upper()
 
     Rblpapi::blpConnect()
 
     dat <- Rblpapi::bdh(
       securities = ticker_full,
-      fields     = flds,
+      fields     = field_full,
       start.date = start_date %>% as.Date()
     ) %>%
       magrittr::set_colnames(c("dates", flds))%>%
       tibble::as_tibble() %>%
       dplyr::mutate(dates = .data$dates %>% lubridate::as_datetime())
 
+    field_name <- ifelse(field_full == "PX_LAST",
+                         "",
+                         paste0("-(", field_full, ")")) %>%
+      stringr::str_replace_all("_", "-")
+
     file_name <- ifelse(type == "Index", ticker, flds) %>%
+      paste0(field_name) %>%
       stringr::str_to_lower() %>%
       stringr::str_replace_all(" ", "-") %>%
       paste0(".RDS")
