@@ -5,8 +5,8 @@
 update_key <- function(security){
 
   # search for security
-  equities <- dir("C:/Users/David/Dropbox/pam/asset-management/equities")
-  economics <- dir("C:/Users/David/Dropbox/pam/economics")
+  equities <- dir("C:/Users/David/Dropbox/work/pam/asset-management/equities")
+  economics <- dir("C:/Users/David/Dropbox/work/pam/economics")
 
   if(security %in% equities){
     path <- "C:/Users/David/Dropbox/work/pam/asset-management/equities/"
