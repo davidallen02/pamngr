@@ -9,11 +9,11 @@ update_key <- function(security){
   economics <- dir("C:/Users/David/Dropbox/pam/economics")
 
   if(security %in% equities){
-    path <- "C:/Users/David/Dropbox/pam/asset-management/equities/"
+    path <- "C:/Users/David/Dropbox/work/pam/asset-management/equities/"
     type <- "Equity"
   } else {
     if(security %in% economics){
-      path <- "C:/Users/David/Dropbox/pam/economics"
+      path <- "C:/Users/David/Dropbox/work/pam/economics"
       type <- "Index"
     } else{
       print(paste(security, "not in either equities or economics folders"))
