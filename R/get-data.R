@@ -22,8 +22,15 @@ get_data <- function(ticker,
                      flds = "PX_LAST",
                      start_date = "2000-01-01",
                      names = NA){
+if(ticker == "key"){
+  if(Sys.info()["nodename"] == "BBDA"){
+    dat <- readRDS("C:/Users/David/Dropbox/work/pam/economics/eco-data/data/key.RDS")
+  }
 
-
+  if(Sys.info()["nodename"] == "Davids-Macbook-Pro.local"){
+    dat <- readRDS("~/dropbox/work/pam/economics/eco-data/data/key.RDS")
+  }
+} else{
   machine <- Sys.info() %>% magrittr::extract2("nodename")
 
   if(machine %in% c("BBDA","BBJW")){
@@ -88,6 +95,7 @@ get_data <- function(ticker,
       dat <- readRDS(file_name)
     }
   }
+}
 
   return(dat)
 }
