@@ -7,7 +7,7 @@
 set_layout <- function(x){
 
   path <- if(Sys.info()["nodename"] %in% c("BBJW", "BBDA")){
-    "R/David/Projects/Tamarac/economic-market-commentary/layouts.xlsx"
+    "R:/David/Projects/Tamarac/economic-market-commentary/layouts.xlsx"
   } else{
     "~/onedrive/pamgmt/projects/tamarac/economic-market-commentary/layouts.xlsx"
   }
