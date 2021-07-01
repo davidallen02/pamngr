@@ -31,6 +31,7 @@ if(ticker == "key"){
     dat <- readRDS("~/dropbox/work/pam/economics/eco-data/data/key.RDS")
   }
 } else{
+
   machine <- Sys.info() %>% magrittr::extract2("nodename")
 
   if(machine %in% c("BBDA","BBJW")){
@@ -55,18 +56,44 @@ if(ticker == "key"){
       tibble::as_tibble() %>%
       dplyr::mutate(dates = .data$dates %>% lubridate::as_datetime())
 
-    field_name <- ifelse(field_full == "PX_LAST",
-                         "",
-                         paste0("-(", field_full, ")")) %>%
-      stringr::str_replace_all("_", "-")
+    if(type == "Index"){
 
-    file_name <- ifelse(type == "Index", ticker, flds) %>%
-      paste0(field_name) %>%
-      stringr::str_to_lower() %>%
-      stringr::str_replace_all(" ", "-") %>%
-      paste0(".RDS")
+      field_name <- ifelse(flds == "PX_LAST",
+                           "",
+                           paste0("-(", flds, ")")) %>%
+        stringr::str_replace_all("_", "-")
 
-    saveRDS(dat, paste0("./data/", file_name))
+      file_name <- ticker %>%
+        paste0(field_name) %>%
+        stringr::str_to_lower() %>%
+        stringr::str_replace_all(" ", "-")
+
+      saveRDS(dat, paste0("C:/Users/David/Dropbox/work/pam/economics/eco-data/data/", file_name, ".RDS"))
+    }
+
+    if(type == "Equity"){
+
+      ticker <- ticker %>% stringr::word() %>% stringr::str_to_lower()
+
+      flds <- flds %>% stringr::str_to_lower() %>% stringr::str_replace_all("_", "-")
+
+      file_name <- paste0("C:/Users/David/Dropbox/work/pam/asset-management/equities/eq-data/output/",
+                          ticker, "-", flds,".RDS")
+      # dat <- readRDS(file_name)
+    }
+
+    # field_name <- ifelse(field_full == "PX_LAST",
+    #                      "",
+    #                      paste0("-(", field_full, ")")) %>%
+    #   stringr::str_replace_all("_", "-")
+    #
+    # file_name <- ifelse(type == "Index", ticker, flds) %>%
+    #   paste0(field_name) %>%
+    #   stringr::str_to_lower() %>%
+    #   stringr::str_replace_all(" ", "-") %>%
+    #   paste0(".RDS")
+    #
+    saveRDS(dat, file_name)
 
   } else {
     if(type == "Index"){
