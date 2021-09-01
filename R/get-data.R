@@ -73,6 +73,9 @@ get_data <- function(ticker,
 
       if(type == "Equity"){
 
+        print(ticker)
+        print(flds)
+
         # ticker <- ticker %>% stringr::word() %>% stringr::str_to_lower()
         #
         # flds <- flds %>% stringr::str_to_lower() %>% stringr::str_replace_all("_", "-")
@@ -84,6 +87,8 @@ get_data <- function(ticker,
           paste0("-(", flds, ")") %>%
           stringr::str_replace_all("_", "-") %>%
           stringr::str_to_lower()
+
+        print(file_name)
 
         saveRDS(dat, paste0(pamngr::get_path(), "data/eq-data/", file_name, ".RDS"))
       }
