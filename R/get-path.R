@@ -12,9 +12,9 @@ get_path <- function(){
 
   machine <- Sys.info() %>% magrittr::extract2("nodename")
 
-  if(machine == "BBDA"){path <- "C:/Users/David/PAM Research Dropbox/"}
+  if(machine == "BBDA"){path <- "C:/Users/David/PAM Research Dropbox/David/"}
 
-  if(machine == "Davids-MacBook-Pro.local"){path <- "~/PAM Research Dropbox/"}
+  if(machine == "Davids-MacBook-Pro.local"){path <- "~/PAM Research Dropbox/David/"}
 
   return(path)
 
