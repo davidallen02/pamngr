@@ -79,7 +79,7 @@ get_data <- function(ticker,
         flds <- flds %>% stringr::str_to_lower() %>% stringr::str_replace_all("_", "-")
 
         file_name <- paste0("C:/Users/David/Dropbox/work/pam/asset-management/equities/eq-data/output/",
-                            ticker, "-", flds,".RDS")
+                            ticker, "-(", flds,").RDS")
         dat <- readRDS(file_name)
       }
 
