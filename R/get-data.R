@@ -85,7 +85,7 @@ get_data <- function(ticker,
           stringr::str_replace_all("_", "-") %>%
           stringr::str_to_lower()
 
-        saveRDS(dat, paste0(pamngr::get_path(), "data/eq-data", file_name, ".RDS"))
+        saveRDS(dat, paste0(pamngr::get_path(), "data/eq-data/", file_name, ".RDS"))
       }
 
     } else {
