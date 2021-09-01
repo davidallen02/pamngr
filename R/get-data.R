@@ -4,7 +4,6 @@
 #'
 #' @param ticker character
 #' @param type character
-#' @param path character
 #' @param flds character
 #' @param start_date character
 #' @param names character
@@ -18,7 +17,6 @@
 
 get_data <- function(ticker,
                      type = "Index",
-                     path = "data.xlsx",
                      flds = "PX_LAST",
                      start_date = "2000-01-01",
                      names = NA){
