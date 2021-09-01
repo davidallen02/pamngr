@@ -14,7 +14,7 @@ get_path <- function(){
 
   if(machine == "BBDA"){path <- "C:/Users/David/PAM Research Dropbox/"}
 
-  if(machine == "Davids-Macbook-Pro.local"){path <- "~/PAM Research Dropbox/"}
+  if(machine == "Davids-MacBook-Pro.local"){path <- "~/PAM Research Dropbox/"}
 
   return(path)
 
