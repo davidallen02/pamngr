@@ -13,7 +13,8 @@ moving_avg <- function(dat, k){
 
   dat <- dat %>%
     dplyr::group_by(.data$variable) %>%
-    dplyr::mutate(value = .data$value %>% RcppRoll::roll_mean(n = k, fill = NA, align = "right"))
+    dplyr::mutate(value = .data$value %>%
+                    RcppRoll::roll_mean(n = k, fill = NA, align = "right"))
 
   return(dat)
 }

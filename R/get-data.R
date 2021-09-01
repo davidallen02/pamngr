@@ -24,7 +24,7 @@ get_data <- function(ticker,
                      names = NA){
 if(ticker == "key"){
   if(Sys.info()["nodename"] == "BBDA"){
-    dat <- readRDS("C:/Users/David/Dropbox/work/pam/economics/eco-data/data/key.RDS")
+    dat <- readRDS("C:/Users/David/PAM Research Dropbox/David/data/eco-data/key.RDS")
   }
 
   if(Sys.info()["nodename"] == "Davids-Macbook-Pro.local"){
@@ -69,6 +69,7 @@ if(ticker == "key"){
         stringr::str_replace_all(" ", "-")
 
       saveRDS(dat, paste0("C:/Users/David/Dropbox/work/pam/economics/eco-data/data/", file_name, ".RDS"))
+      saveRDS(dat, paste0("C:/Users/David/PAM Research Dropbox/David/data/eco-data/", file_name, ".RDS"))
     }
 
     if(type == "Equity"){
@@ -79,21 +80,8 @@ if(ticker == "key"){
 
       file_name <- paste0("C:/Users/David/Dropbox/work/pam/asset-management/equities/eq-data/output/",
                           ticker, "-", flds,".RDS")
-      # dat <- readRDS(file_name)
+      dat <- readRDS(file_name)
     }
-
-    # field_name <- ifelse(field_full == "PX_LAST",
-    #                      "",
-    #                      paste0("-(", field_full, ")")) %>%
-    #   stringr::str_replace_all("_", "-")
-    #
-    # file_name <- ifelse(type == "Index", ticker, flds) %>%
-    #   paste0(field_name) %>%
-    #   stringr::str_to_lower() %>%
-    #   stringr::str_replace_all(" ", "-") %>%
-    #   paste0(".RDS")
-    #
-    saveRDS(dat, file_name)
 
   } else {
     if(type == "Index"){
@@ -108,17 +96,27 @@ if(ticker == "key"){
         stringr::str_to_lower() %>%
         stringr::str_replace_all(" ", "-")
 
-      dat <- readRDS(paste0("/Users/davidallen/Dropbox/work/pam/economics/eco-data/data/", file_name, ".RDS"))
+      dat <- readRDS(paste0("/Users/davidallen/PAM Research Dropbox/David/data/eco-data/",
+                            file_name,
+                            ".RDS"))
     }
 
     if(type == "Equity"){
 
-      ticker <- ticker %>% stringr::word() %>% stringr::str_to_lower()
+      ticker <- ticker %>%
+        stringr::word() %>%
+        stringr::str_to_lower()
 
-      flds <- flds %>% stringr::str_to_lower() %>% stringr::str_replace_all("_", "-")
+      flds <- flds %>%
+        stringr::str_to_lower() %>%
+        stringr::str_replace_all("_", "-")
 
       file_name <- paste0("~/Dropbox/work/pam/asset-management/equities/eq-data/output/",
-                          ticker, "-", flds,".RDS")
+                          ticker,
+                          "-",
+                          flds,
+                          ".RDS")
+
       dat <- readRDS(file_name)
     }
   }

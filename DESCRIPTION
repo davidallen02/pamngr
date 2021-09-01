@@ -30,6 +30,7 @@ Imports:
     tidyr,
     readr,
     purrr,
-    gridExtra
+    gridExtra,
+    RcppRoll
 Depends: 
     R (>= 2.10)
